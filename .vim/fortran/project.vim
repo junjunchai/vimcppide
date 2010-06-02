@@ -8,19 +8,10 @@ let g:winManagerWindowLayout='FileExplorer|TagList|BufExplorer'
 let g:winManagerWidth=35
 nmap <F4> :WMToggle<cr>
 """""""""""""""""""""""""""""
-" F5编译和运行C程序，F6编译和运行C++程序
+" F6编译和运行fortran程序，F6编译和运fortran程序
 " 请注意，下述代码在windows下使用会报错
 " 需要去掉./这两个字符
 """""""""""""""""""""""""""""
-" C的编译和运行
-"map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-    exec "w"
-    exec "!gcc -Wall -g % -o %<"
-    exec "! ./%<"
-endfunc
-
-" C++的编译和运行
 "map <F6> :call CompileRunGpp()<CR>
 func! CompileRunGpp()
     exec "w"
@@ -35,4 +26,4 @@ func! ReTag()
     set tags+=./tags
 endfunc
 
-map <F5> :call ReTag()<CR>
+map <F7> :call ReTag()<CR>

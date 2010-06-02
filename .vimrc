@@ -282,10 +282,6 @@ au BufReadPost *.nfo call RestoreFileEncodings()
 au BufRead,BufNewFile *  setfiletype txt
 
 
-"Gui action mapping
-nnoremap <F7> :set guioptions+=m<CR>
-nnoremap <C-F7> :set guioptions-=m<CR>
-
 "字典完成
 set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
 
@@ -360,7 +356,7 @@ set runtimepath+=~/.vim/textmateOnly/after/
 
 "字典
 "set keywordprg=~/Apps/dicty
-:inoremap <C-f> <esc>:!~/.vim/Apps/dicty <cWORD><cr>a
+":inoremap <C-f> <esc>:!~/.vim/Apps/dicty <cWORD><cr>a
 """""""""""""""""""""""""""""""""""""""""
 
 ""使用模板, 新建或打开空文件时自动调用模板

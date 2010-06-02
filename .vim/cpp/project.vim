@@ -202,7 +202,6 @@ map M :call ReadMan()<CR>
 " 需要去掉./这两个字符
 """""""""""""""""""""""""""""
 " C的编译和运行
-"map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     exec "!gcc -Wall -g % -o %<"
@@ -210,15 +209,19 @@ func! CompileRunGcc()
 endfunc
 
 " C++的编译和运行
-"map <F6> :call CompileRunGpp()<CR>
 func! CompileRunGpp()
     exec "w"
     exec "!g++ -Wall -g % -o %<"
     exec "! ./%<"
 endfunc
-"au FileType cpp map <F5> :call CompileRunGpp()<CR>
-"au FileType c map <F5> :call CompileRunGcc()<CR>
 
+func! ReTag()
+    exec "w"
+    exec "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q"
+    set tags+=./tags
+endfunc
+
+map <F7> :call ReTag()<CR>
 """"""""""""""""""""""""""""""
 "Doxygen
 """"""""""""""""""""""""""""""
@@ -252,21 +255,21 @@ let g:SuperTabRetainCompletionType=2
 "c/c++ IDE
 """""""""""""""""""""""""""""""""
 source ~/.vim/cpp/side-c.vim
-"""""""""""""""""""""""""""""""""
-"C语言注释和反注释,虽然有EnhancedCommentify,但还是习惯自己写的
-"Uncomment
-:nnoremap <buffer> <silent> <F2>uc :.s+\(// *\\|/\* *\\| *\*/\)++g<CR>:silent! .s/\|+/\/*/g<CR>:silent! .s/+\|/*\//g<CR>:noh<CR>
-"Comment
-:nnoremap <buffer> <silent> <F2>cm :silent! .s/\/\*/\|+/g<CR>:silent! .s/\*\//+\|/g<CR>:.s/^\(.*\)$/\/* \1 *\//<CR>:noh<CR>
-"Uncomment sub-comment
-:vnoremap <buffer> <silent> <F2>usubcm :s+/\@<=\*\@=\\|\*\@<=/\@=+ +g<CR>:noh<CR>
-"Virtual comment
-:vnoremap <buffer> <silent> * :<ESC>'<O<Home>/*<ESC>'>o<Home>*/<ESC>:silent! '<,'>s/\/\*/\|+/g<CR>:silent! '<,'>s/\*\//+\|/g<CR>:noh<CR>
-"Virtual uncomment
-:vnoremap <buffer> <silent> u* :s+\(/\*\\|\*/\)++<CR>:silent! '<,'>s/\|+/\/*/g<CR>:silent! '<,'>s/+\|/*\//g<CR>:noh<CR>
-"Virtual Partially comment
-:vnoremap <buffer> <silent> <F2>pcm xi/*  */<ESC>hhP
-
+""""""""""""""""""""""""""""""""""
+""C语言注释和反注释,虽然有EnhancedCommentify,但还是习惯自己写的
+""Uncomment
+":nnoremap <buffer> <silent> <F2>uc :.s+\(// *\\|/\* *\\| *\*/\)++g<CR>:silent! .s/\|+/\/*/g<CR>:silent! .s/+\|/*\//g<CR>:noh<CR>
+""Comment
+":nnoremap <buffer> <silent> <F2>cm :silent! .s/\/\*/\|+/g<CR>:silent! .s/\*\//+\|/g<CR>:.s/^\(.*\)$/\/* \1 *\//<CR>:noh<CR>
+""Uncomment sub-comment
+":vnoremap <buffer> <silent> <F2>usubcm :s+/\@<=\*\@=\\|\*\@<=/\@=+ +g<CR>:noh<CR>
+""Virtual comment
+":vnoremap <buffer> <silent> * :<ESC>'<O<Home>/*<ESC>'>o<Home>*/<ESC>:silent! '<,'>s/\/\*/\|+/g<CR>:silent! '<,'>s/\*\//+\|/g<CR>:noh<CR>
+""Virtual uncomment
+":vnoremap <buffer> <silent> u* :s+\(/\*\\|\*/\)++<CR>:silent! '<,'>s/\|+/\/*/g<CR>:silent! '<,'>s/+\|/*\//g<CR>:noh<CR>
+""Virtual Partially comment
+":vnoremap <buffer> <silent> <F2>pcm xi/*  */<ESC>hhP
+"
 
 "浮动窗口显示tag, 需要gui, 有点小bug，有时会报错
 if has('gui_running')
@@ -292,7 +295,14 @@ endif
 """""""""""""""""""""""""""""""""""
 "设置语法折叠
 """""""""""""""""""""""""""""""""""
-
-nmap tl :Tlist<cr>
+let g:NeoComplCache_EnableAtStartup = 1
+let g:NeoComplCache_SmartCase = 1
+let g:NeoComplCache_EnableUnderbarCompletion = 1
+:NeoComplCacheEnable
+map <c-c> ,c<space>
+let g:winManagerWindowLayout='FileExplorer|TagList|BufExplorer'
+let g:winManagerWidth=35
+nmap <F4> :WMToggle<cr>
+"nmap tl :Tlist<cr>
 autocmd FileType c,cpp,cs source ~/.vim/cpp/valgrind.vim
 let g:valgrind_arguments='--leak-check=yes --num-callers=5000'
