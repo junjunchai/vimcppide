@@ -15,7 +15,7 @@ nmap <F4> :WMToggle<cr>
 "map <F6> :call CompileRunGpp()<CR>
 func! CompileRunGpp()
     exec "w"
-    exec "!g++ -Wall -g % -o %<"
+    exec "!gfortran -Wall -g % -o %<"
     exec "! ./%<"
 endfunc
 "au FileType cpp map <F5> :call CompileRunGpp()<CR>

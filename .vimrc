@@ -282,6 +282,10 @@ au BufReadPost *.nfo call RestoreFileEncodings()
 au BufRead,BufNewFile *  setfiletype txt
 
 
+"Gui action mapping
+nnoremap <F7> :set guioptions+=m<CR>
+nnoremap <C-F7> :set guioptions-=m<CR>
+
 "字典完成
 set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
 
@@ -356,7 +360,7 @@ set runtimepath+=~/.vim/textmateOnly/after/
 
 "字典
 "set keywordprg=~/Apps/dicty
-":inoremap <C-f> <esc>:!~/.vim/Apps/dicty <cWORD><cr>a
+:inoremap <C-f> <esc>:!~/.vim/Apps/dicty <cWORD><cr>a
 """""""""""""""""""""""""""""""""""""""""
 
 ""使用模板, 新建或打开空文件时自动调用模板
@@ -415,8 +419,35 @@ function! MyCountPattern(MyRegMatch) range
 endfunction
 
 " nerd tree
-nmap    <leader>e   :NERDTreeToggle<CR>
+nmap nt   :NERDTreeToggle<CR>
 
 " paste
 set pastetoggle=<leader>p
+function! ShowMan()
+	let word = expand("<cword>")
+	new
+	exe "r!man -a ".word."|col -b"
+	1 "Go to the first line
+endfun
+
+map M :call ShowMan()<CR>
+"== USAGE ==
+"
+"Type :ConqueTerm <command> to run your command in vim, for example:
+"
+":ConqueTerm bash
+":ConqueTerm mysql -h localhost -u joe -p sock_collection
+":ConqueTerm ipython
+"
+"To open ConqueTerm in a new horizontal or vertical buffer use:
+"
+":ConqueTermSplit <command>
+":ConqueTermVSplit <command>
+":ConqueTermTab <command>
+"
+"All text typed in insert mode will be sent to your shell. Use the <F9> key to send a visual selection from any buffer to the shell.
+"
+"For more help type :help ConqueTerm
+map <F8> :ConqueTermSplit bash<CR>
+nmap tl :Tlist<cr>
 

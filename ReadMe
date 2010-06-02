@@ -1,0 +1,75 @@
+== WEBSITE == 
+
+For more information http://code.google.com/p/vimcppide
+
+== USAGE == 
+
+What vimcppide can do.
+    For c,cpp user:
+    1) You can create source file from header,or on the contrary.
+        Type :A
+    2) YOu can have a reference to c.
+        Press <leader>cr, <leader>cw, <leader>cc
+        Note: by default <Leader> is \, e.g. press \cr to invoke C-reference        
+    3) You can have a docbook to c++.
+        Press <leader>tr
+    4) You regenerate tag using ctags and then reset tags 
+        Press <F7>
+    5) You can have a ide-like style.(TagList, FileExplorer, BufferExplorer)
+        Press <F4>
+    6) You can have read man-page.
+        Press M, you also can press K,but there is one chapter of man-page.
+    7) You can have shell inside vim.
+        Press F8
+    8) You can open file-explorer.
+        Press nt
+    9) You can use TagList.
+        Press tl
+    10)You can compiler use gcc.
+        Press <F5>
+    11)You can comment and uncomment code.
+        Use <C-c>
+    12)After set right tags file, you can find function and variable defination.
+        Press <C-]> or g,<C-]>
+        find variable declare by press gD.
+    13)You can use cscope.
+        <C-\>
+        <C-\>s
+        <C-\>g
+        <C-\>c
+        <C-\>t
+        <C-\>e
+        <C-\>f
+        <C-\>i
+        <C-\>d
+
+
+    14)You can use valgrind.
+        Type :Valgrind to run valgrind with the specified options.
+
+    15)You can use Doxygen inside vim.
+        Type :Dox
+             :DoxLic
+             :DoxAuthor
+        
+
+    For fortran user:
+    1) You regenerate tag using ctags and then reset tags 
+        Press <F7>
+    2) You can have a ide-like style.(TagList, FileExplorer, BufferExplorer)
+        Press <F4>
+    3) You can have read man-page.
+        Press M, you also can press K,but there is one chapter of man-page.
+    4) You can have shell inside vim.
+        Press F8
+    5) You can open file-explorer.
+        Press nt
+    6) You can use TagList.
+        Press tl
+    7)You can compiler use gfortran.
+        Press <F5>
+    8)You can comment and uncomment code.
+        Use <C-c>
+    9)After set right tags file, you can find function and variable defination.
+        Press <C-]> or g,<C-]>
+        find variable declare by press gD.

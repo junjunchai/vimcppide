@@ -193,8 +193,6 @@ autocmd FileType c,cpp,cs source ~/.vim/cpp/stlrefvim.vim
 "    std::for_each(start, end, PrintFunc)
 "    place the cursor over for_each and type <Leader>tr to go to documentation for this function.  Type <Leader>te to go to an example that uses this function.
 
-" Map the M key to the ReadMan function:
-map M :call ReadMan()<CR>
 
 """""""""""""""""""""""""""""
 " F5编译和运行C程序，F6编译和运行C++程序
@@ -202,19 +200,19 @@ map M :call ReadMan()<CR>
 " 需要去掉./这两个字符
 """""""""""""""""""""""""""""
 " C的编译和运行
-func! CompileRunGcc()
-    exec "w"
-    exec "!gcc -Wall -g % -o %<"
-    exec "! ./%<"
-endfunc
-
-" C++的编译和运行
-func! CompileRunGpp()
-    exec "w"
-    exec "!g++ -Wall -g % -o %<"
-    exec "! ./%<"
-endfunc
-
+"func! CompileRunGcc()
+"    exec "w"
+"    exec "!gcc -Wall -g % -o %<"
+"    exec "! ./%<"
+"endfunc
+"
+"" C++的编译和运行
+"func! CompileRunGpp()
+"    exec "w"
+"    exec "!g++ -Wall -g % -o %<"
+"    exec "! ./%<"
+"endfunc
+"
 func! ReTag()
     exec "w"
     exec "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q"
@@ -225,20 +223,31 @@ map <F7> :call ReTag()<CR>
 """"""""""""""""""""""""""""""
 "Doxygen
 """"""""""""""""""""""""""""""
+
 autocmd FileType c,cpp,cs source ~/.vim/cpp/DoxygenToolkit.vim
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-let g:DoxygenToolkit_paramTag_pre="@Param "
-let g:DoxygenToolkit_returnTag="@Returns   "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
-let g:DoxygenToolkit_authorName="Chai JunJun"
+let g:DoxygenToolkit_authorName = "kofshower"
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_briefTag_className = "yes"
+let g:DoxygenToolkit_briefTag_structName = "yes"
+let g:DoxygenToolkit_briefTag_enumName = "yes"
+let g:DoxygenToolkit_briefTag_namespaceName = "yes"
+"let g:DoxygenToolkit_licenseTag = "\<enter>Copyright (C) 2010 TL50. All right reserved."$
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_paramTag_post=": "
+
+"let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+"let g:DoxygenToolkit_paramTag_pre="@Param "
+"let g:DoxygenToolkit_returnTag="@Returns   "
+"let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+"let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+"let g:DoxygenToolkit_authorName="Chai JunJun"
 " let g:DoxygenToolkit_licenseTag="My own license\<enter>"   <-- Do not forget
 " ending "\<enter>"
-let g:DoxygenToolkit_licenseTag="GPL\<enter>Free soft,no warranted\<enter>We are all in the mud, but some of us are looking at the stars.\<enter>We are not born for ourselves.\<enter>"
+"let g:DoxygenToolkit_licenseTag="GPL\<enter>Free soft,no warranted\<enter>We are all in the mud, but some of us are looking at the stars.\<enter>We are not born for ourselves.\<enter>"
 let g:DoxygenToolkit_undocTag="DOXIGEN_SKIP_BLOCK"
 "# default use /**...*/ as comment. With this option /// comments are used.
 "let g:DoxygenToolkit_commentType="C++"
-let g:DoxygenToolkit_briefTag_funcName = "yes"  " to include function name between briefTag_pre and briefTag_post
+"let g:DoxygenToolkit_briefTag_funcName = "yes"  " to include function name between briefTag_pre and briefTag_post
 
 """""""""""""""""""""""""""""""""
 "supertab
