@@ -18,7 +18,7 @@ if has("cscope")
     endif
     set csverb
     "set cscopetag
-    set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
+    "set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
 endif
 "递归向上级目录查找cscope数据库
 if has("gui_running")
@@ -215,7 +215,7 @@ autocmd FileType c,cpp,cs source ~/.vim/cpp/stlrefvim.vim
 "
 func! ReTag()
     exec "w"
-    exec "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q"
+    exec "sh ~/.vim/maketags.sh"
     set tags+=./tags
 endfunc
 
