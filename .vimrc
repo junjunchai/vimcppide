@@ -292,7 +292,14 @@ set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Keybinding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+func! ReTag()
+    exec "w"
+    exec "!sh ~/.vim/bin/maketags.sh"
+    set tags+=./tags
+endfunc
 
+map <F7> :call ReTag()<CR>
+nnoremap <F6> :execute "cd" expand("%:h")<CR>
 nnoremap <silent> <F4> :tabprevious<CR>
 "== USAGE ==
 "
@@ -439,7 +446,7 @@ function! ShowMan()
 endfun
 
 " nerd tree
-nmap nt   :NERDTreeToggle<CR>
+nmap tf :NERDTreeToggle<CR>
 
 " paste
 set pastetoggle=<leader>p

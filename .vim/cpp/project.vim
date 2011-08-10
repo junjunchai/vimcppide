@@ -213,13 +213,7 @@ autocmd FileType c,cpp,cs source ~/.vim/cpp/stlrefvim.vim
 "    exec "! ./%<"
 "endfunc
 "
-func! ReTag()
-    exec "w"
-    exec "sh ~/.vim/maketags.sh"
-    set tags+=./tags
-endfunc
 
-map <F7> :call ReTag()<CR>
 """"""""""""""""""""""""""""""
 "Doxygen
 """"""""""""""""""""""""""""""
