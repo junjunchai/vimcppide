@@ -221,8 +221,7 @@ bindkey "\e\e" sudo-command-line
 alias -g cp='cp -i'
 alias -g mv='mv -i'
 alias -g rm='rm -i'
-alias -g ls='ls -F --color=auto'
-alias -g ll='ls -l'
+alias -g ll='ls -hal'
 alias -g grep='grep --color=auto'
 alias -g ee='emacsclient -t'
 
@@ -252,7 +251,6 @@ if [[ "$TERM" == "dumb" ]]; then
 setopt No_zle
 PROMPT='%n@%M %/
 >>'
-alias ls='ls -F'
 fi    
 #}}}
 

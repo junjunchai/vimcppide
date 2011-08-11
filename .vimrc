@@ -66,7 +66,7 @@ set writebackup
 set nobackup
 
 " 不要生成swap文件，当buffer被丢弃的时候隐藏它
-"setlocal noswapfile
+setlocal noswapfile
 set bufhidden=hide
 set dir=~/.vim/tmp
 
