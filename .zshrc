@@ -138,7 +138,7 @@ zstyle ':completion:*' squeeze-shlashes 'yes'
 zstyle ':completion::complete:*' '\\'
 
 #彩色补全菜单
-eval $(dircolors -b)
+#eval $(dircolors -b)
 export ZLSCOLORS="${LS_COLORS}"
 zmodload zsh/complist
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
