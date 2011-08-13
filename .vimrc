@@ -64,7 +64,9 @@ endi
 "set backup
 "设置无备份文件
 set writebackup
-set nobackup
+set backupext=.bak
+set backupdir=~/.vim/tmp
+"set nobackup
 
 " 不要生成swap文件，当buffer被丢弃的时候隐藏它
 " setlocal noswapfile
