@@ -294,13 +294,14 @@ set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Keybinding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-func! ReTag()
+func! ReTag(srcdir)
     exec "w"
-    exec "!sh ~/.vim/bin/maketags.sh"
-    set tags+=./tags
+    exec "!sh ~/.vim/bin/maketagandaddtovim" a:srcdir
+    cs add ~/.vim/tmp/cscope.out
+    set tags+=~/.vim/tmp/tags
 endfunc
 
-map <F7> :call ReTag()<CR>
+map <F7> :call ReTag(expand ("%:h"))<CR>
 nnoremap <F6> :execute "cd" expand("%:h")<CR>
 nnoremap <silent> <F4> :tabprevious<CR>
 "== USAGE ==
