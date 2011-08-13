@@ -2,6 +2,7 @@
 " 一般设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设定默认解码
+"set fenc=gbk
 set fenc=utf-8
 set fencs=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
 set enc=utf-8
@@ -183,7 +184,6 @@ au FileType changelog setlocal textwidth=76
 
 " Recognize standard C++ headers
 au BufEnter /usr/include/c++/*    setf cpp
-au BufEnter /usr/include/g++-3/*  setf cpp
 au BufEnter ~/Source/cpp_src/*  setf cpp
 au BufEnter ~/Source/cpp_src/stl/* setf cpp
 " Setting for files following the GNU coding standard
@@ -283,8 +283,8 @@ au BufRead,BufNewFile *  setfiletype txt
 
 
 "Gui action mapping
-nnoremap <F7> :set guioptions+=m<CR>
-nnoremap <C-F7> :set guioptions-=m<CR>
+"nnoremap <F7> :set guioptions+=m<CR>
+"nnoremap <C-F7> :set guioptions-=m<CR>
 
 "字典完成
 set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
@@ -292,14 +292,37 @@ set dictionary-=~/.vim/dic/words dictionary+=~/.vim/dic/words
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Keybinding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+func! ReTag()
+    exec "w"
+    exec "!sh ~/.vim/bin/maketags.sh"
+    set tags+=./tags
+endfunc
 
-" 双反斜杠\\即可打开bufexplorer
-map <leader><leader> \be
-
+map <F7> :call ReTag()<CR>
+nnoremap <F6> :execute "cd" expand("%:h")<CR>
 nnoremap <silent> <F4> :tabprevious<CR>
-
-:set cscopequickfix=s-,c-,d-,i-,t-,e-
+"== USAGE ==
+"
+"Type :ConqueTerm <command> to run your command in vim, for example:
+"
+":ConqueTerm bash
+":ConqueTerm mysql -h localhost -u joe -p sock_collection
+":ConqueTerm ipython
+"
+"To open ConqueTerm in a new horizontal or vertical buffer use:
+"
+":ConqueTermSplit <command>
+":ConqueTermVSplit <command>
+":ConqueTermTab <command>
+"
+"All text typed in insert mode will be sent to your shell. Use the <F9> key to send a visual selection from any buffer to the shell.
+"
+"For more help type :help ConqueTerm
+nnoremap <F8> :ConqueTermSplit bash<CR>
 nnoremap <silent> <F3> :Grep<CR>
+"加上日期 对应F2
+nnoremap <F2> <ESC>gg:read !date<CR>
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -338,9 +361,6 @@ endf
 :inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 :inoremap <expr> <c-n> pumvisible() ? "\<lt>c-n>" : "\<lt>c-n>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
 :inoremap <expr> <m-;> pumvisible() ? "\<lt>c-n>" : "\<lt>c-x>\<lt>c-o>\<lt>c-n>\<lt>c-p>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
-
-"加上日期 对应F2
-:map <F2> <ESC>gg:read !date<CR>
 
 "选中一段文字并全文搜索这段文字
 :vnoremap <silent> ,/ y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -418,11 +438,6 @@ function! MyCountPattern(MyRegMatch) range
    echomsg matchCount
 endfunction
 
-" nerd tree
-nmap nt   :NERDTreeToggle<CR>
-
-" paste
-set pastetoggle=<leader>p
 function! ShowMan()
 	let word = expand("<cword>")
 	new
@@ -430,24 +445,14 @@ function! ShowMan()
 	1 "Go to the first line
 endfun
 
+" nerd tree
+nmap tf :NERDTreeToggle<CR>
+
+" paste
+set pastetoggle=<leader>p
 map M :call ShowMan()<CR>
-"== USAGE ==
-"
-"Type :ConqueTerm <command> to run your command in vim, for example:
-"
-":ConqueTerm bash
-":ConqueTerm mysql -h localhost -u joe -p sock_collection
-":ConqueTerm ipython
-"
-"To open ConqueTerm in a new horizontal or vertical buffer use:
-"
-":ConqueTermSplit <command>
-":ConqueTermVSplit <command>
-":ConqueTermTab <command>
-"
-"All text typed in insert mode will be sent to your shell. Use the <F9> key to send a visual selection from any buffer to the shell.
-"
-"For more help type :help ConqueTerm
-map <F8> :ConqueTermSplit bash<CR>
 nmap tl :Tlist<cr>
+" 双反斜杠\\即可打开bufexplorer
+map <leader><leader> \be
+
 
