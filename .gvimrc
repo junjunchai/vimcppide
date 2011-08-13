@@ -11,8 +11,8 @@ set guioptions-=T
 
 " 设定颜色方案和字体
 " 英文用Consolas显示，中文用微软雅黑
-set guifont=Vera\ Sans\ YuanTi\ Mono\ 14
-set guifontset=Vera\ Sans\ YuanTi\ Mono\ 14
+set guifont=Monaco:h18
+set guifontset=STHeiti:h18
 colorscheme inkpot
 highlight PmenuSel ctermbg=7 guibg=DarkBlue guifg=White
 highlight PmenuSbar ctermbg=7 guibg=DarkGray
